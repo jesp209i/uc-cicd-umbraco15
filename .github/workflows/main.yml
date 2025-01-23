@@ -12,8 +12,8 @@ jobs:
     name: "Syncronize with Cloud"
     uses: ./.github/workflows/cloud-sync.yml
     secrets:
-      projectId: ${{ secrets.PROJECT_ID }}
-      umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_API_KEY }}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      UMBRACO_CLOUD_API_KEY: ${{ secrets.UMBRACO_CLOUD_API_KEY }}
 
   # Package and Deploy to Umbraco Cloud
   cloud-deployment:
