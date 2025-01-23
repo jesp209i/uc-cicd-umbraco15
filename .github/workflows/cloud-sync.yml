@@ -13,8 +13,8 @@ on:
         required: true
 
 env:
-  projectId: ${{ secrets.projectId }}
-  umbracoCloudApiKey: ${{ secrets.umbracoCloudApiKey }}
+  projectId: ${{ secrets.PROJECT_ID }}
+  umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_API_KEY }}
 
 jobs:
   preflight:
