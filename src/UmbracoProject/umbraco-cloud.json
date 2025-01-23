@@ -1,7 +1,17 @@
 {
   "Deploy": {
     "Project": {
-      "Workspaces": []
+      "Name": "jam cicd umbraco15",
+      "Alias": "jam-cicd-umbraco15",
+      "Id": "40e28e40-d274-41f4-8484-844373c5f877",
+      "Workspaces": [
+        {
+          "Id": "0caf4c32-0dd2-48f2-b6f0-d29fb740e7f9",
+          "Name": "Live",
+          "Type": "live",
+          "Url": "https://jam-cicd-umbraco15.euwest01.rainbowsrock.net"
+        }
+      ]
     },
     "Settings": {}
   },
