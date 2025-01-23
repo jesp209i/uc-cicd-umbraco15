@@ -2,6 +2,10 @@ name: Umbraco Cloud Sync
 
 on:
   workflow_call:
+    inputs:
+      cloudBaseUrl: 
+        required: true
+        type: string
     outputs:
       newSha:
         description: 'The new SHA hash if there was a patch'
@@ -28,7 +32,7 @@ jobs:
           ${{ secrets.PROJECT_ID }} 
           ${{ secrets.UMBRACO_CLOUD_API_KEY }} 
           GITHUB
-
+          "${{ inputs.cloudBaseUrl }}"
     outputs:
       latestDeploymentId: ${{ steps.latest-deployment.outputs.latestDeploymentId }}
 
@@ -54,6 +58,7 @@ jobs:
           ${{ env.latestDeploymentId }}
           ${{GITHUB.WORKSPACE}}/patch
           GITHUB
+          "${{ inputs.cloudBaseUrl }}"
 
       - name: See diff content if any
         if: ${{ steps.latest-changes.outputs.remoteChanges == 'yes' }}

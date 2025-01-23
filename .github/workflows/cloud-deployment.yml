@@ -6,11 +6,17 @@ on:
       newSha:
         required: false
         type: string
+      cloudBaseUrl: 
+        required: true
+        type: string
 
   workflow_call:
     inputs:
       newSha:
         required: false
+        type: string
+      cloudBaseUrl: 
+        required: true
         type: string
     secrets:
       PROJECT_ID:
@@ -70,6 +76,7 @@ jobs:
           ${{ secrets.UMBRACO_CLOUD_API_KEY }} 
           "Run number ${{github.run_number}}" 
           GITHUB
+          "${{ inputs.cloudBaseUrl }}"
 
       # Upload your zipped artifact
       - name: Post Zipped Artifact
@@ -80,6 +87,7 @@ jobs:
           ${{ steps.deployment-meta.outputs.deploymentId }} 
           ${{ secrets.UMBRACO_CLOUD_API_KEY }} 
           ${{ GITHUB.WORKSPACE }}/sources.zip
+          "${{ inputs.cloudBaseUrl }}"
 
       # Actually request to start the deployment process in cloud
       - name: Request Start Deployment
@@ -89,6 +97,7 @@ jobs:
           ${{ secrets.PROJECT_ID }} 
           ${{ steps.deployment-meta.outputs.deploymentId }} 
           ${{ secrets.UMBRACO_CLOUD_API_KEY }}
+          "${{ inputs.cloudBaseUrl }}"
 
   awaitDeploymentFinished:
     name: Await deployment to finish
@@ -107,3 +116,5 @@ jobs:
           ${{ secrets.PROJECT_ID }} 
           ${{ env.runningDeploymentId }} 
           ${{ secrets.UMBRACO_CLOUD_API_KEY }}
+          2000
+          "${{ inputs.cloudBaseUrl }}"
